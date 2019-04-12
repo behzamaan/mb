@@ -1,0 +1,20 @@
+.my-form{
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+.my-card{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 60px;
+  width: 40%;
+}
+.mat-toolbar-single-row{
+  height: 40px;
+  background-color: blue;
+}

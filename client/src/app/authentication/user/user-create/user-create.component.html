@@ -1,0 +1,57 @@
+<mat-card>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm">
+        <mat-form-field>
+          <input matInput [(ngModel)]="user.email" placeholder="ایمیل">
+        </mat-form-field>
+      </div>
+      <div class="col-sm">
+        <mat-form-field>
+          <input matInput  [(ngModel)]='user.enabled' placeholder="فعال">
+        </mat-form-field>
+      </div>
+      <div class="col-sm">
+        <mat-form-field>
+          <input matInput [(ngModel)]='user.firstName' placeholder="نام">
+        </mat-form-field>
+      </div>
+      <div class="col-sm">
+        <mat-form-field>
+          <input matInput  [(ngModel)]='user.lastName' placeholder="شهرت">
+        </mat-form-field>
+      </div>
+      <div class="col-sm">
+        <mat-form-field>
+          <input matInput  [(ngModel)]='user.password' placeholder="رمز">
+        </mat-form-field>
+      </div>
+      <div class="col-sm">
+        <mat-form-field>
+          <input matInput [(ngModel)]='user.tokenExpired' placeholder="فعال">
+        </mat-form-field>
+      </div>
+      <div class="col-sm">
+        <mat-form-field>
+          <input matInput   [(ngModel)]='user.username' placeholder="نام کاربری">
+        </mat-form-field>
+      </div>
+
+
+
+    </div>
+  </div>
+  <mat-card-actions dir="ltr">
+    <button mat-raised-button (click)="saveOrUpdate(user)"  color="primary">ذخیره</button>
+
+
+  </mat-card-actions>
+</mat-card>
+
+
+
+
+
+
+
+

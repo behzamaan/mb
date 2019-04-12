@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-button [matMenuTriggerFor]="menu">کاربر</button>
+    <mat-menu #menu="matMenu">
+
+      <button mat-menu-item routerLink="./user/search">جستجو</button>
+      <button mat-menu-item routerLink=".//user/create">کاربر جدید</button>
+      <button mat-menu-item routerLink=".//user/display" >نمایش</button>
+      <button mat-menu-item (click)="logout()" >خروج</button>
+
+    </mat-menu>
+    <span ></span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<router-outlet></router-outlet>
+

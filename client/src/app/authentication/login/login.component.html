@@ -1,0 +1,28 @@
+
+
+
+
+<mat-card class="my-card">
+  <mat-card-content>
+    <form class="my-form">
+      <mat-form-field class="full-width" >
+        <mat-label>نام کاربری</mat-label>
+        <input  matInput  placeholder="نام کاربری" name="username"  [(ngModel)]= 'username'>
+
+
+
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>رمز عبور</mat-label>
+        <input  matInput  placeholder="رمز عبور" name="password" [(ngModel)]='password'>
+
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions dir="ltr">
+    <button mat-raised-button (click)="login()" color="primary">LOGIN</button>
+
+
+  </mat-card-actions>
+</mat-card>
+<router-outlet></router-outlet>

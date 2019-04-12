@@ -27,6 +27,7 @@ public class Login {
                 "", user.isEnabled(), user.isAccountNonExpired(), roles);
     }
 
+
     @GetMapping("/isSession")
     public Boolean isSession(Authentication authentication){
         return authentication.isAuthenticated();

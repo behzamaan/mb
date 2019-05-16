@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  public USER_API =  '/userEntities';
+  public USER_API =  '/users/';
   constructor(private http: HttpClient, private router: Router) { }
 
   search(): Observable<any> {

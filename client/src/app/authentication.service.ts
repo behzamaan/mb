@@ -11,8 +11,7 @@ import {Autentication} from './authentication/authentication/autentication';
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<Autentication>;
   public currentUser: Observable<Autentication>;
-  public API = '//localhost:8080';
-  public USER_API = this.API + '/users';
+
 
   constructor(private http: HttpClient, private router: Router) {
     this.currentUserSubject = new BehaviorSubject<Autentication>(JSON.parse(localStorage.getItem('currentUser')));

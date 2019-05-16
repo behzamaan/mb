@@ -6,7 +6,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 
 import { AppMaterialModule } from './app-material.module';
@@ -16,6 +16,7 @@ import { AppMaterialModule } from './app-material.module';
 import {AppRoutingModule} from './app-routing.module';
 import {Router} from '@angular/router';
 import {CommonModule} from '@angular/common';
+import {AuthInterceptor} from './auth-interceptor';
 
 
 @NgModule({
@@ -33,7 +34,13 @@ import {CommonModule} from '@angular/common';
     AppMaterialModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

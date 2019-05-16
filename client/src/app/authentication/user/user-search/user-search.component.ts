@@ -14,12 +14,16 @@ export class UserSearchComponent implements OnInit {
 
   ngOnInit() {
     this.userService.search().subscribe(list => {
-      this.users = list._embedded.userEntities;
+      this.users = list;
       console.log(this.users[0]);
     });
   }
 
   remove($event: MouseEvent) {
     console.log($event);
+  }
+
+  edit(i: any) {
+    console.log(i);
   }
 }

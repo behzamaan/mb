@@ -42,8 +42,8 @@
 
 
   <ng-container matColumnDef="edit">
-    <th mat-header-cell *matHeaderCellDef> edit </th>
-    <td mat-cell (click)="remove(i)" *matCellDef="let element; let i = index"> E </td>
+    <th mat-header-cell *matHeaderCellDef> ویرایش </th>
+    <td mat-cell (click)="edit(element.username)" *matCellDef="let element; let i = index"> E </td>
   </ng-container>
 
 

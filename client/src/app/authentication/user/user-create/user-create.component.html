@@ -36,7 +36,11 @@
           <input matInput   [(ngModel)]='user.username' placeholder="نام کاربری">
         </mat-form-field>
       </div>
-
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker6" placeholder="json gregorian input" [(ngModel)]="dateControl">
+        <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+        <mat-datepicker #picker6></mat-datepicker>
+      </mat-form-field>
 
 
     </div>

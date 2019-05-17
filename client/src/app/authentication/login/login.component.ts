@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
         () => {
           this.user = JSON.parse(localStorage.getItem('currentUser'));
           console.log(this.user.username);
-          this.router.navigate(['/authentication/user']);
+          this.router.navigate(['authentication']);
         }
       );
     // console.log(this.user);

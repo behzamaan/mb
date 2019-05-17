@@ -17,11 +17,13 @@ import {AppRoutingModule} from './app-routing.module';
 import {Router} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {AuthInterceptor} from './auth-interceptor';
+import {LoginComponent} from './authentication/login/login.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,

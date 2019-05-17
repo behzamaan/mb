@@ -46,7 +46,7 @@ UserDetailsServiceImpl myUserDetailsService;
                 .antMatchers("/resources/**").permitAll()
                 .antMatchers("/*.js").permitAll()
                 .anyRequest().authenticated()
-                .and().logout().logoutUrl("/ll").clearAuthentication(true).deleteCookies("JSESSIONID")
+                .and().logout().logoutUrl("/logout").clearAuthentication(true).deleteCookies("JSESSIONID")
                 .and().httpBasic();
     }
 

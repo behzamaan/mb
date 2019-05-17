@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../user.service';
 import {User} from '../user';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-user-search',
@@ -10,7 +11,7 @@ import {User} from '../user';
 export class UserSearchComponent implements OnInit {
   users: Array<User>;
   displayedColumns: string[] = ['username', 'firstName', 'lastName', 'email', 'enabled', 'tokenExpired' , 'remove' , 'edit'];
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
     this.userService.search().subscribe(list => {
@@ -19,11 +20,8 @@ export class UserSearchComponent implements OnInit {
     });
   }
 
-  remove($event: MouseEvent) {
-    console.log($event);
+  remove(id: Number) {
+    console.log('remove entity by id : ' + id);
   }
 
-  edit(i: any) {
-    console.log(i);
-  }
 }

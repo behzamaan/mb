@@ -12,7 +12,7 @@ import {UserComponent} from './user/user.component';
 import {UserCreateComponent} from './user/user-create/user-create.component';
 import {UserDisplayComponent} from './user/user-display/user-display.component';
 import {AuthenticationComponent} from './authentication/authentication.component';
-import {LoginComponent} from './login/login.component';
+
 import {UserSearchComponent} from './user/user-search/user-search.component';
 
 
@@ -26,7 +26,6 @@ import {UserSearchComponent} from './user/user-search/user-search.component';
     UserComponent,
     UserCreateComponent,
     UserDisplayComponent,
-    LoginComponent,
     UserSearchComponent
   ],
   imports: [

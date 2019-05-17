@@ -1,8 +1,13 @@
 package ir.mb.demo.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +35,8 @@ public class UserRest {
         UserEntity userEntity1 = userEntity.get();
         userEntity1.setRoles(null);
         userEntity1.setPassword(null);
+
+
         return userEntity1;
     }
 

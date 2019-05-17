@@ -28,7 +28,7 @@ export class AuthInterceptor implements HttpInterceptor {
         this.authenticationService.logout();
         this.router.navigate(['/']);
       }
-      if (err.status === 504) {
+      if (err.status === 504 || err.status === 504 ) {
         this.router.navigate(['app']);
       }
       const error = err.error.message || err.statusText;

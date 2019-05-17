@@ -19,7 +19,7 @@ export class AuthenticationComponent implements OnInit {
       .subscribe(
         () => {
           console.log('Autentication logout');
-          this.router.navigate(['/authentication/login']);
+          this.router.navigate(['/']);
         }
       );
   }

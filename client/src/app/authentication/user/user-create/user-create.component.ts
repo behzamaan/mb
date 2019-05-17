@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../user';
 
 import {UserService} from '../user.service';
+import {ActivatedRoute, ParamMap, Params, Route, Router} from '@angular/router';
+import {switchMap} from 'rxjs/operators';
+import {load} from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-user-create',
@@ -11,16 +14,20 @@ import {UserService} from '../user.service';
 export class UserCreateComponent implements OnInit {
   user = new User();
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.load(params.get('id'));
+    });
   }
 
   delete(id: Number) {
   }
 
-  load(id: Number): any {
+  load(id: any): any {
+    console.log(id);
     return null;
   }
 

@@ -1,5 +1,5 @@
 <mat-card>
-  <div class="container-fluid">
+  <div class="container">
     <div class="row">
       <div class="col-sm">
         <mat-form-field>
@@ -8,7 +8,7 @@
       </div>
       <div class="col-sm">
         <mat-form-field>
-          <input matInput  [(ngModel)]='user.enabled' placeholder="فعال">
+          <input matInput [(ngModel)]='user.enabled' placeholder="فعال">
         </mat-form-field>
       </div>
       <div class="col-sm">
@@ -18,12 +18,12 @@
       </div>
       <div class="col-sm">
         <mat-form-field>
-          <input matInput  [(ngModel)]='user.lastName' placeholder="شهرت">
+          <input matInput [(ngModel)]='user.lastName' placeholder="شهرت">
         </mat-form-field>
       </div>
       <div class="col-sm">
         <mat-form-field>
-          <input matInput  [(ngModel)]='user.password' placeholder="رمز">
+          <input matInput [(ngModel)]='user.password' placeholder="رمز">
         </mat-form-field>
       </div>
       <div class="col-sm">
@@ -33,20 +33,22 @@
       </div>
       <div class="col-sm">
         <mat-form-field>
-          <input matInput   [(ngModel)]='user.username' placeholder="نام کاربری">
+          <input matInput [(ngModel)]='user.username' placeholder="نام کاربری">
         </mat-form-field>
       </div>
-      <mat-form-field>
-        <input matInput [matDatepicker]="picker6" placeholder="json gregorian input" [(ngModel)]="dateControl">
-        <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
-        <mat-datepicker #picker6></mat-datepicker>
-      </mat-form-field>
+      <div class="col-sm">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker6" placeholder="json gregorian input" [(ngModel)]="dateControl">
+          <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+          <mat-datepicker #picker6></mat-datepicker>
+        </mat-form-field>
+      </div>
 
 
     </div>
   </div>
   <mat-card-actions dir="ltr">
-    <button mat-raised-button (click)="saveOrUpdate(user)"  color="primary">ذخیره</button>
+    <button mat-raised-button (click)="saveOrUpdate(user)" color="primary">ذخیره</button>
 
 
   </mat-card-actions>

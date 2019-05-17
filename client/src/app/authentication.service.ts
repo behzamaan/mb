@@ -57,6 +57,6 @@ export class AuthenticationService {
     };
     this.currentUserSubject.next(null);
     localStorage.setItem('currentUser', null);
-    return this.http.get('/ll');
+    return this.http.get('http://localhost:8181/logout');
   }
 }

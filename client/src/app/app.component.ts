@@ -14,9 +14,9 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     const c = this.authenticationService.currentUserValue;
     if (c) {
-      this.router.navigate(['/authentication/user']);
+      this.router.navigate(['authentication']);
     } else {
-      this.router.navigate(['/authentication/login']);
+      this.router.navigate(['/login']);
     }
   }
 

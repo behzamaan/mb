@@ -5,6 +5,8 @@ import {UserService} from '../user.service';
 import {ActivatedRoute, ParamMap, Params, Route, Router} from '@angular/router';
 import {switchMap} from 'rxjs/operators';
 import {load} from '@angular/core/src/render3';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-user-create',
@@ -14,7 +16,7 @@ import {load} from '@angular/core/src/render3';
 export class UserCreateComponent implements OnInit {
   user = new User();
 
-  constructor(private userService: UserService, private route: ActivatedRoute) {
+  constructor(private userService: UserService, private route: ActivatedRoute , private location: Location) {
   }
 
   ngOnInit() {
@@ -27,6 +29,9 @@ export class UserCreateComponent implements OnInit {
   }
 
   load(id: any): any {
+    this.userService.load(id).subscribe(model  => {
+        this.user = model;
+    });
     console.log(id);
     return null;
   }
@@ -42,6 +47,10 @@ export class UserCreateComponent implements OnInit {
       }
     );
     return null;
+  }
+
+  back(): void {
+    this.location.back();
   }
 
 

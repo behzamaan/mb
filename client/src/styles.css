@@ -3,10 +3,10 @@
 @import "~bootstrap/dist/css/bootstrap-grid.min.css";
 
 
-
 body {
   font-family: Roboto, Arial, sans-serif;
   margin: 0;
+  background-color: aliceblue;
 }
 
 .basic-container {

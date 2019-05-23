@@ -1,12 +1,14 @@
 package ir.mb.demo.security;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name = "sec_user")
 public class UserEntity {
@@ -15,7 +17,6 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotNull
-
     private String username;
     private String firstName;
     private String lastName;
@@ -25,8 +26,7 @@ public class UserEntity {
     private boolean enabled;
     private boolean tokenExpired;
 
-    public UserEntity() {
-    }
+
 
     public UserEntity(String username, String firstName, String lastName, String email,
                       String password, boolean enabled, boolean tokenExpired, Collection<Role> roles) {
@@ -39,7 +39,7 @@ public class UserEntity {
         this.tokenExpired = tokenExpired;
         this.roles = roles;
     }
-
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @ManyToMany
     @JoinTable(
             name = "users_roles",

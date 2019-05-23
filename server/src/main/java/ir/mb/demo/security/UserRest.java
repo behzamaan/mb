@@ -1,25 +1,22 @@
 package ir.mb.demo.security;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "users")
+@RequestMapping("users")
+@RequiredArgsConstructor
 public class UserRest {
     @Autowired
     UserRepository userRepository;
 
     @GetMapping("/")
-    public List<UserEntity> users() {
+    public List<UserEntity> findAll() {
         List<UserEntity> all=new ArrayList<>();
         userRepository.findAll().forEach(c->{
             c.setRoles(null);
@@ -30,7 +27,7 @@ public class UserRest {
     }
 
     @GetMapping("/{id}")
-    public UserEntity getUser(@PathVariable Long id) {
+    public UserEntity findById(@PathVariable Long id) {
         Optional<UserEntity> userEntity = userRepository.findById(id);
         UserEntity userEntity1 = userEntity.get();
         userEntity1.setRoles(null);
@@ -40,13 +37,13 @@ public class UserRest {
         return userEntity1;
     }
 
-
+    @PostMapping
     public UserEntity save(@RequestBody UserEntity entity) {
         return userRepository.save(entity);
     }
 
     @DeleteMapping("/{id}")
-    public void remove(@PathVariable Long id) {
+    public void deleteById(@PathVariable Long id) {
          userRepository.deleteById(id);
     }
 

@@ -17,17 +17,17 @@ public enum SearchOperation {
 
     public static final String RIGHT_PARANTHESIS = ")";
 
-    public static SearchOperation getSimpleOperation(final char input) {
+    public static SearchOperation getSimpleOperation(final String input) {
         switch (input) {
-            case ':':
+            case ":":
                 return EQUALITY;
-            case '!':
+            case "!":
                 return NEGATION;
-            case '>':
+            case ">":
                 return GREATER_THAN;
-            case '<':
+            case "<":
                 return LESS_THAN;
-            case '~':
+            case "~":
                 return LIKE;
             default:
                 return null;

@@ -9,11 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @RestController
 @RequestMapping("users")
 @RequiredArgsConstructor
-public class UserRest {
+public class UserRest extends BaseRest<UserEntity> {
+
     @Autowired
     UserRepository userRepository;
 
@@ -30,25 +33,16 @@ public class UserRest {
 
     @GetMapping
     public List<UserEntity> search(@RequestParam(value = "search") String search) {
-        Specification spec =
-                new MbSpecification(new SpecSearchCriteria("username", SearchOperation.EQUALITY, search));
-//        MbSpecificationsBuilder builder = new MbSpecificationsBuilder();
-//        Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(\\w+?),");
-//        Matcher matcher = pattern.matcher(search + ",");
-//        while (matcher.find()) {
-//            builder.with(matcher.group(1),SearchOperation.EQUALITY, matcher.group(3));
-//        }
-
-//        Specification spec = builder.build();
         List<UserEntity> list = new ArrayList();
-        userRepository.findAll(spec).forEach(e->{
+        userRepository.findAll(getSpecification(search)).forEach(e->{
             UserEntity entity= (UserEntity) e;
             entity.setRoles(null);
             list.add(entity);
         });
-
         return list;
     }
+
+
 
     @GetMapping("/{id}")
     public UserEntity findById(@PathVariable Long id) {
@@ -56,8 +50,6 @@ public class UserRest {
         UserEntity userEntity1 = userEntity.get();
         userEntity1.setRoles(null);
         userEntity1.setPassword(null);
-
-
         return userEntity1;
     }
 

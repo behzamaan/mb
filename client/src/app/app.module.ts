@@ -18,12 +18,15 @@ import {Router} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {AuthInterceptor} from './auth-interceptor';
 import {LoginComponent} from './authentication/login/login.component';
+import {SearchModel} from './share/search-model';
+import {SearchBuilder} from './share/search-builder';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+
   ],
   imports: [
     CommonModule,
@@ -35,6 +38,7 @@ import {LoginComponent} from './authentication/login/login.component';
     HttpClientModule,
     AppMaterialModule,
     AppRoutingModule
+
   ],
   providers: [
     {

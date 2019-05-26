@@ -15,6 +15,10 @@ public final class MbSpecificationsBuilder {
         params = new ArrayList<>();
     }
 
+    public MbSpecificationsBuilder with(String key, String operation, Object value) {
+        params.add(new SpecSearchCriteria(key, SearchOperation.getSimpleOperation(operation), value));
+        return this;
+    }
     // API
 
     public final MbSpecificationsBuilder with(final String key, final String operation, final Object value, final String prefix, final String suffix) {
@@ -22,7 +26,7 @@ public final class MbSpecificationsBuilder {
     }
 
     public final MbSpecificationsBuilder with(final String orPredicate, final String key, final String operation, final Object value, final String prefix, final String suffix) {
-        SearchOperation op = SearchOperation.getSimpleOperation(operation.charAt(0));
+        SearchOperation op = SearchOperation.getSimpleOperation(operation);
         if (op != null) {
             if (op == SearchOperation.EQUALITY) { // the operation may be complex operation
                 final boolean startWithAsterisk = prefix != null && prefix.contains(SearchOperation.ZERO_OR_MORE_REGEX);
@@ -65,4 +69,6 @@ public final class MbSpecificationsBuilder {
         params.add(criteria);
         return this;
     }
+
+
 }

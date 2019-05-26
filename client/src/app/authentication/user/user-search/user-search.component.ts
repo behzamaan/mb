@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {UserService} from '../user.service';
 import {User} from '../user';
 import {Router} from '@angular/router';
 import {el} from '@angular/platform-browser/testing/src/browser_util';
+import {SearchBuilder} from '../../../share/search-builder';
 
 @Component({
   selector: 'app-user-search',
@@ -15,6 +16,7 @@ export class UserSearchComponent implements OnInit {
   users: Array<User>;
   displayedColumns: string[] = ['username', 'firstName', 'lastName', 'email', 'enabled', 'tokenExpired' , 'remove' , 'edit'];
 
+
   ngOnInit() {
     if (this.user.username === undefined) {
       this.userService.all().subscribe(list => {
@@ -26,7 +28,10 @@ export class UserSearchComponent implements OnInit {
     }
   }
   search() {
-    this.userService.search(this.user.username).subscribe(list => {
+    const s = new SearchBuilder()
+      .add('username', ':', this.user.username)
+      .build();
+    this.userService.search(s).subscribe(list => {
       this.users = list;
       console.log(this.users[0]);
     });

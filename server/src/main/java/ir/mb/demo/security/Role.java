@@ -3,10 +3,12 @@ package ir.mb.demo.security;
 
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Collection;
 @Data
+@ToString
 @Entity
 @Table(name = "sec_role")
 public class Role {

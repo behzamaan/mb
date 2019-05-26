@@ -2,6 +2,7 @@ package ir.mb.demo.security;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Collection;
 @Data
 @NoArgsConstructor
+@ToString
 @Entity
 @Table(name = "sec_user")
 public class UserEntity {

@@ -1,7 +1,9 @@
 package ir.mb.demo.security;
 
+import ir.mb.demo.base.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -24,6 +26,28 @@ public class UserRest {
             all.add(c);
         });
         return  all;
+    }
+
+    @GetMapping
+    public List<UserEntity> search(@RequestParam(value = "search") String search) {
+        Specification spec =
+                new MbSpecification(new SpecSearchCriteria("username", SearchOperation.EQUALITY, search));
+//        MbSpecificationsBuilder builder = new MbSpecificationsBuilder();
+//        Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(\\w+?),");
+//        Matcher matcher = pattern.matcher(search + ",");
+//        while (matcher.find()) {
+//            builder.with(matcher.group(1),SearchOperation.EQUALITY, matcher.group(3));
+//        }
+
+//        Specification spec = builder.build();
+        List<UserEntity> list = new ArrayList();
+        userRepository.findAll(spec).forEach(e->{
+            UserEntity entity= (UserEntity) e;
+            entity.setRoles(null);
+            list.add(entity);
+        });
+
+        return list;
     }
 
     @GetMapping("/{id}")

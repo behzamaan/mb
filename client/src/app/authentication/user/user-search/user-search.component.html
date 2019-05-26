@@ -1,4 +1,29 @@
-<table mat-table [dataSource]="users" class="mat-elevation-z8" style="width: 100%">
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        جستجو
+      </mat-panel-title>
+      <mat-panel-description>
+
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field>
+      <input [(ngModel)]="user.username" matInput placeholder="نام کاربری">
+    </mat-form-field>
+    <div dir="ltr">
+      <mat-card-actions>
+        <button mat-raised-button (click)="search()" color="primary">جستجو</button>
+        <button mat-raised-button [routerLink]="['../create']"  color="primary">جدید</button>
+      </mat-card-actions>
+    </div>
+  </mat-expansion-panel>
+
+ </mat-accordion>
+
+
+<table mat-table [dataSource]="users" class="mat-elevation-z8" style="width : 100%;margin-top: 20px">
 
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
@@ -36,15 +61,17 @@
   </ng-container>
 
   <ng-container matColumnDef="remove">
-    <th mat-header-cell *matHeaderCellDef> remove </th>
-    <td mat-cell (click)="remove(element.id)" *matCellDef="let element; let i = index"> X </td>
+    <th mat-header-cell *matHeaderCellDef> حذف </th>
+    <td mat-cell style="cursor: pointer" (click)="remove(element.id)" *matCellDef="let element; let i = index">
+      <mat-icon>delete</mat-icon>
+    </td>
   </ng-container>
 
 
-  <ng-container matColumnDef="edit">
+  <ng-container matColumnDef="edit" >
     <th mat-header-cell *matHeaderCellDef> ویرایش </th>
-    <td mat-cell *matCellDef="let element; let i = index" [routerLink]="['../edit',element.id]">
-     [-]
+    <td mat-cell style="cursor: pointer" *matCellDef="let element; let i = index" [routerLink]="['../edit',element.id]">
+      <mat-icon >edit</mat-icon>
        </td>
   </ng-container>
 
@@ -56,3 +83,4 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+

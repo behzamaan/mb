@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from '../user.service';
 import {User} from '../user';
 import {Router} from '@angular/router';
+import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 @Component({
   selector: 'app-user-search',
@@ -9,12 +10,23 @@ import {Router} from '@angular/router';
   styleUrls: ['./user-search.component.css']
 })
 export class UserSearchComponent implements OnInit {
+  constructor(private userService: UserService, private router: Router) { }
+  user =  <User> {};
   users: Array<User>;
   displayedColumns: string[] = ['username', 'firstName', 'lastName', 'email', 'enabled', 'tokenExpired' , 'remove' , 'edit'];
-  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
-    this.userService.search().subscribe(list => {
+    if (this.user.username === undefined) {
+      this.userService.all().subscribe(list => {
+        this.users = list;
+        console.log(this.users[0]);
+      });
+    } else {
+      this.search();
+    }
+  }
+  search() {
+    this.userService.search(this.user.username).subscribe(list => {
       this.users = list;
       console.log(this.users[0]);
     });

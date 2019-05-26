@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Router} from '@angular/router';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Params, Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import {User} from './user';
 
@@ -11,8 +11,13 @@ export class UserService {
   public USER_API =  '/users/';
   constructor(private http: HttpClient, private router: Router) { }
 
-  search(): Observable<any> {
+  all(): Observable<any> {
     return this.http.get(this.USER_API);
+  }
+
+  search(p): Observable<any> {
+    const search = new HttpParams().set('search', p);
+    return this.http.get<any>('/users' , {params: search});
   }
 
   saveOrUpdate(user): Observable<any> {

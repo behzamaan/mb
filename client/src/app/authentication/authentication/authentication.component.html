@@ -1,12 +1,14 @@
 <div style="margin-bottom: 20px">
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <button mat-button [matMenuTriggerFor]="menu">کاربر</button>
+    <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon>home</mat-icon>
+    </button>
     <mat-menu #menu="matMenu">
 
-      <button mat-menu-item routerLink="./user/search">جستجو</button>
-      <button mat-menu-item routerLink=".//user/create">کاربر جدید</button>
-      <button mat-menu-item routerLink=".//user/display" >نمایش</button>
+      <button mat-menu-item routerLink="./user/search">کاربر</button>
+
+
       <button mat-menu-item (click)="logout()" >خروج</button>
 
     </mat-menu>
@@ -14,5 +16,6 @@
   </mat-toolbar-row>
 </mat-toolbar>
 </div>
+<div class="container-fluid">
 <router-outlet></router-outlet>
-
+</div>

@@ -1,9 +1,10 @@
 import {NgModule} from '@angular/core';
 import {DragDropModule} from '@angular/cdk/drag-drop';
-import {CdkTableModule} from '@angular/cdk/table';
-import {  DateAdapter,  MAT_DATE_FORMATS,  MAT_DATE_LOCALE } from '@angular/material';
-import {MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS} from './material-persian-date-adapter';
+
 import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
   MatAutocompleteModule,
   MatBadgeModule,
   MatBottomSheetModule,
@@ -40,6 +41,9 @@ import {
   MatTooltipModule,
   MatTreeModule
 } from '@angular/material';
+import {MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS} from './material-persian-date-adapter';
+import {CdkTableModule} from '@angular/cdk/table';
+import {CdkTreeModule} from '@angular/cdk/tree';
 
 
 @NgModule({
@@ -78,6 +82,7 @@ import {
     MatSortModule,
     MatTableModule,
     CdkTableModule,
+    CdkTreeModule,
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,

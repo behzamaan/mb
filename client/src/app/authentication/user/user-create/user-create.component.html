@@ -8,7 +8,10 @@
       </div>
       <div class="col-auto">
         <mat-form-field>
-          <input matInput [(ngModel)]='user.enabled' placeholder="فعال">
+          <section>
+          <mat-checkbox  [(ngModel)]="user.enabled">فعال</mat-checkbox>
+          <!--<input matInput [(ngModel)]="user.enabled" placeholder="فعال">-->
+          </section>
         </mat-form-field>
       </div>
       <div class="col-auto">
@@ -38,7 +41,7 @@
       </div>
       <div class="col-auto">
         <mat-form-field>
-          <input matInput [matDatepicker]="pickerauto" placeholder="json gregorian input" [(ngModel)]="dateControl">
+          <input matInput [matDatepicker]="pickerauto" placeholder="json gregorian input" >
           <mat-datepicker-toggle matSuffix [for]="pickerauto"></mat-datepicker-toggle>
           <mat-datepicker #pickerauto></mat-datepicker>
         </mat-form-field>

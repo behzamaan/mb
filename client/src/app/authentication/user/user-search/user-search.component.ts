@@ -38,7 +38,10 @@ export class UserSearchComponent implements OnInit {
   }
 
   remove(id: Number) {
-    console.log('remove entity by id : ' + id);
+
+    this.userService.remove(id).subscribe(() =>{
+      console.log('remove entity by id : ' + id);
+    });
   }
 
 }

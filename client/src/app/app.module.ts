@@ -1,16 +1,14 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {CdkTableModule} from '@angular/cdk/table';
-import {CdkTreeModule} from '@angular/cdk/tree';
+
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 
-import { AppMaterialModule } from './app-material.module';
-
+import {AppMaterialModule} from './app-material.module';
 
 
 import {AppRoutingModule} from './app-routing.module';
@@ -18,8 +16,10 @@ import {Router} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {AuthInterceptor} from './auth-interceptor';
 import {LoginComponent} from './authentication/login/login.component';
-import {SearchModel} from './share/search-model';
-import {SearchBuilder} from './share/search-builder';
+
+
+
+
 
 
 @NgModule({
@@ -33,7 +33,6 @@ import {SearchBuilder} from './share/search-builder';
     FormsModule,
     BrowserAnimationsModule,
     CdkTableModule,
-    CdkTreeModule,
     ScrollingModule,
     HttpClientModule,
     AppMaterialModule,

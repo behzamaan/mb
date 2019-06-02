@@ -7,12 +7,11 @@
         </mat-form-field>
       </div>
       <div class="col-auto">
-        <mat-form-field>
-          <section>
-          <mat-checkbox  [(ngModel)]="user.enabled">فعال</mat-checkbox>
-          <!--<input matInput [(ngModel)]="user.enabled" placeholder="فعال">-->
-          </section>
-        </mat-form-field>
+        <section>
+          <mat-checkbox color="primary"  [(ngModel)]="user.enabled">
+            <span>فعال ؟ </span>
+          </mat-checkbox>
+        </section>
       </div>
       <div class="col-auto">
         <mat-form-field>
@@ -30,9 +29,7 @@
         </mat-form-field>
       </div>
       <div class="col-auto">
-        <mat-form-field>
-          <input matInput [(ngModel)]='user.tokenExpired' placeholder="فعال">
-        </mat-form-field>
+          <mat-checkbox   [(ngModel)]="user.tokenExpired"></mat-checkbox>
       </div>
       <div class="col-auto">
         <mat-form-field>

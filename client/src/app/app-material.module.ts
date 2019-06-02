@@ -16,7 +16,7 @@ import {
   MatDatepickerModule,
   MatDialogModule,
   MatDividerModule,
-  MatExpansionModule,
+  MatExpansionModule, MatFormFieldModule,
   MatGridListModule,
   MatIconModule,
   MatInputModule,
@@ -87,6 +87,7 @@ import {CdkTreeModule} from '@angular/cdk/tree';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    MatFormFieldModule,
   ],
   providers: [
     { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },

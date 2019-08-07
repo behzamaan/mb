@@ -1,12 +1,12 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-/*@import "~bootstrap/dist/css/bootstrap.min.css";*/
+@import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~bootstrap/dist/css/bootstrap-grid.min.css";
 
 
 body {
-  font-family: Roboto, Arial, sans-serif;
   margin: 0;
   background-color: aliceblue;
+  text-align: right;
 }
 
 .basic-container {
@@ -16,4 +16,13 @@ body {
 .version-info {
   font-size: 8pt;
   float: right;
+}
+.bottom-form{
+  text-align: end;
+}
+.input-group-text{
+  border-radius:0;
+}
+.form-control{
+  border-radius:0;
 }

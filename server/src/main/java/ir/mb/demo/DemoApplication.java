@@ -48,7 +48,7 @@ public class DemoApplication implements ApplicationRunner {
     void createUserIfNotFound() {
         UserEntity adminUser = userRepository.findByUsername("admin");
         if (adminUser == null) {
-            UserEntity user = new UserEntity("admin","admin","admin","admin",
+            UserEntity user = new UserEntity("admin","admin","admin","admin@admin.com",
                     encoder.encode("admin"),true,true,
                     Collections.singleton(createRoleIfNotFound("ROLE_ADMIN")));
             userRepository.save(user);

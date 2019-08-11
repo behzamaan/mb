@@ -37,15 +37,13 @@ export class UserCreateComponent implements OnInit {
   }
 
   saveOrUpdate(model: User): User {
-    this.userService.saveOrUpdate(model).subscribe(
-      (user) => {
-        return user;
-      }, (error) => {
-        console.log(error);
-      }, () => {
-        console.log('ok');
-      }
-    );
+    this.userService.saveOrUpdate(model).toPromise().then((data) => {
+
+
+    }).catch((err) => {
+        console.log(err);
+    });
+
     return null;
   }
 

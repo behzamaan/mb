@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -54,7 +55,7 @@ public class UserRest extends BaseRest<UserEntity> {
     }
 
     @PostMapping
-    public UserEntity save(@RequestBody UserEntity entity) {
+    public UserEntity save(@Valid @RequestBody UserEntity entity) {
         return userRepository.save(entity);
     }
 

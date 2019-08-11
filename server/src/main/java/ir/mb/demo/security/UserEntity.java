@@ -18,12 +18,12 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NotNull
+    @NotNull(message = "لطفا نام کاربری را وارد کنید")
     private String username;
     private String firstName;
     private String lastName;
     private String email;
-    @NotNull
+
     private String password;
     private boolean enabled;
     private boolean tokenExpired;
@@ -41,7 +41,7 @@ public class UserEntity {
         this.tokenExpired = tokenExpired;
         this.roles = roles;
     }
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+//    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @ManyToMany
     @JoinTable(
             name = "users_roles",

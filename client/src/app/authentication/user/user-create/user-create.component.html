@@ -1,80 +1,106 @@
-<mat-card>
-
-    <div class="container">
-      <div class="row">
-
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">ایمیل</span>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">کاربر</h5>
+    <form #formUser="ngForm" novalidate>
+      <div class="form-row">
+        <div class="col-sm-4">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">ایمیل</span>
+            </div>
+            <input #email="ngModel" #emailElement required name="email" type="text" [(ngModel)]="user.email"
+                   class="form-control" placeholder="Username"
+                   aria-label="Username"
+                   aria-describedby="basic-addon1">
           </div>
-          <input type="text" [(ngModel)]="user.email" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-        </div>
-
-
-        <label for="enabled" class="input-group-text" >فعال</label>
-        <input id="enabled" type="checkbox" [(ngModel)]="user.enabled"/>
-
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon3">نام</span>
+          <div *ngIf="email.invalid && email.touched" class="alert alert-danger" role="alert">
+            email is required.
           </div>
-          <input type="text" [(ngModel)]="user.firstName" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+
         </div>
-        <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon4">فامیلی</span>
+        <div class="col-sm-4">
+          <section>
+            <mat-checkbox [(ngModel)]="user.enabled" name="enabled" color="primary"   >
+              <span>فعال ؟ </span>
+            </mat-checkbox>
+          </section>
+          <!--<div class="form-group form-check">-->
+            <!--<label class="form-check-label" for="exampleCheck1">فعال</label>-->
+            <!--<input [(ngModel)]="user.enabled" type="checkbox" class="form-check-input" id="exampleCheck1">-->
+          <!--</div>-->
+
         </div>
-        <input type="text" [(ngModel)]="user.lastName" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+        <div class="col-sm-4">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon3">نام</span>
+            </div>
+            <input #firstName="ngModel" #firstNameElement required name="firstName" type="text"
+                   [(ngModel)]="user.firstName" class="form-control" placeholder="Username"
+                   aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+          <div *ngIf="firstName.invalid && firstName.touched" class="alert alert-danger" role="alert">
+            firstName is required.
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon4">فامیلی</span>
+            </div>
+            <input #lastName="ngModel" #lastNameElement required name="lastName" type="text" [(ngModel)]="user.lastName"
+                   class="form-control" placeholder="Username"
+                   aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+          <div *ngIf="lastName.invalid && lastName.touched" class="alert alert-danger" role="alert">
+            lastName is required.
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon8">نام کاربری</span>
+            </div>
+            <input #username="ngModel" #usernameElement required name="username" type="text" [(ngModel)]="user.username"
+                   class="form-control" placeholder="Username"
+                   aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+          <div *ngIf="username.invalid && username.touched" class="alert alert-danger" role="alert">
+            username is required.
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon5">رمز</span>
+            </div>
+            <input #password="ngModel" #passwordElement required name="password" type="text" [(ngModel)]="user.password"
+                   class="form-control" placeholder="Username"
+                   aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+          <div *ngIf="password.invalid && password.touched" class="alert alert-danger" role="alert">
+            password is required.
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group form-check">
+            <label class="form-check-label" for="tokenExpiredCheck">فعال</label>
+            <input [(ngModel)]="user.tokenExpired" name="tokenExpired" type="checkbox" class="form-check-input" id="tokenExpiredCheck">
+          </div>
+
+        </div>
       </div>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon8">نام کاربری</span>
-          </div>
-          <input type="text" [(ngModel)]="user.username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-        </div>
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon5">رمز</span>
-          </div>
-          <input type="text" [(ngModel)]="user.password" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-        </div>
-
-
-
-        <label for="tokenExpired" class="input-group-text" >tokenExpired</label>
-        <input id="tokenExpired" type="checkbox" [(ngModel)]="user.tokenExpired"/>
-
-
-
-        <!--<div>-->
-        <!--<div class="lbl">ایمیل</div>-->
-        <!--<input type="text" [(ngModel)]="user.email"/>-->
-        <!--</div>-->
-        <!--<input type="checkbox" [(ngModel)]="user.enabled"/>-->
-
-        <!--<div class="lbl">نام</div>-->
-        <!--<input type="text" [(ngModel)]="user.firstName"/>-->
-        <!--<div class="lbl">فامیل</div>-->
-        <!--<input type="text" [(ngModel)]="user.lastName"/>-->
-        <!--<div class="lbl">رمز</div>-->
-        <!--<input type="password" [(ngModel)]="user.password"/>-->
-        <!--<div class="lbl">فعال</div>-->
-        <!--<input type="checkbox" [(ngModel)]="user.tokenExpired"/>-->
-        <!--<div class="lbl">نام کاربری</div>-->
-        <!--<input type="text" [(ngModel)]="user.username"/>-->
-        <!--<input matInput [matDatepicker]="pickerauto" placeholder="json gregorian input">-->
-        <!--<mat-datepicker-toggle matSuffix [for]="pickerauto"></mat-datepicker-toggle>-->
-        <!--<mat-datepicker #pickerauto></mat-datepicker>-->
-      </div>
-    </div>
-    <mat-card-actions class="bottom-form">
-      <button mat-raised-button (click)="saveOrUpdate(user)" color="primary">ذخیره</button>
+    </form>
+    <div class="bottom-form">
+      <button  mat-raised-button (click)="saveOrUpdate(user)" color="primary">ذخیره
+      </button>
       <button mat-raised-button (click)="back()" color="primary">بازگشت</button>
+    </div>
+  </div>
+</div>
 
+<!--[disabled]="formUser.invalid"-->
 
-    </mat-card-actions>
-
-</mat-card>
 
 
 

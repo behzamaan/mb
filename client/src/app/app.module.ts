@@ -16,6 +16,8 @@ import {Router} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {AuthInterceptor} from './auth-interceptor';
 import {LoginComponent} from './authentication/login/login.component';
+import {AppPrimeModule} from './app-prime.module';
+import {BrowserModule} from '@angular/platform-browser';
 
 
 
@@ -36,6 +38,7 @@ import {LoginComponent} from './authentication/login/login.component';
     ScrollingModule,
     HttpClientModule,
     AppMaterialModule,
+    AppPrimeModule,
     AppRoutingModule
 
   ],

@@ -19,17 +19,10 @@ import {LoginComponent} from './authentication/login/login.component';
 import {HttpErrorInterceptor} from './http-error-interceptor';
 import {AppPrimeModule} from './app-prime.module';
 
-
-
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-
   ],
   imports: [
     CommonModule,
@@ -41,7 +34,6 @@ import {AppPrimeModule} from './app-prime.module';
     AppMaterialModule,
     AppRoutingModule,
     AppPrimeModule
-
   ],
   providers: [
     {

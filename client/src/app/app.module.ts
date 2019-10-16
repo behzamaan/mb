@@ -18,7 +18,7 @@ import {AuthInterceptor} from './auth-interceptor';
 import {LoginComponent} from './authentication/login/login.component';
 import {HttpErrorInterceptor} from './http-error-interceptor';
 import {AppPrimeModule} from './app-prime.module';
-import {BrowserModule} from '@angular/platform-browser';
+
 
 
 
@@ -39,7 +39,8 @@ import {BrowserModule} from '@angular/platform-browser';
     ScrollingModule,
     HttpClientModule,
     AppMaterialModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AppPrimeModule
 
   ],
   providers: [

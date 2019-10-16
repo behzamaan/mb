@@ -6,6 +6,7 @@ import lombok.ToString;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
 @Data
@@ -18,12 +19,15 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NotNull(message = "لطفا نام کاربری را وارد کنید")
+    @NotNull(message = " نام کاربری ")
     private String username;
+    @NotNull(message = " نام  ")
     private String firstName;
+    @NotNull(message = " فامیلی ")
     private String lastName;
+    @Email(message = " ایمیل ")
     private String email;
-
+    @NotNull(message = " رمز")
     private String password;
     private boolean enabled;
     private boolean tokenExpired;

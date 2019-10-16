@@ -16,6 +16,7 @@ import {Router} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {AuthInterceptor} from './auth-interceptor';
 import {LoginComponent} from './authentication/login/login.component';
+import {HttpErrorInterceptor} from './http-error-interceptor';
 import {AppPrimeModule} from './app-prime.module';
 import {BrowserModule} from '@angular/platform-browser';
 
@@ -38,7 +39,6 @@ import {BrowserModule} from '@angular/platform-browser';
     ScrollingModule,
     HttpClientModule,
     AppMaterialModule,
-    AppPrimeModule,
     AppRoutingModule
 
   ],
@@ -46,6 +46,11 @@ import {BrowserModule} from '@angular/platform-browser';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
       multi: true
     }
   ],

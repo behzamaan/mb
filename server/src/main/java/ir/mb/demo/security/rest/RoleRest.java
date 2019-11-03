@@ -1,7 +1,11 @@
-package ir.mb.demo.security;
+package ir.mb.demo.security.rest;
 
+import ir.mb.demo.security.entity.Role;
+import ir.mb.demo.security.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -27,6 +31,7 @@ public class RoleRest {
     }
 
     @GetMapping("/{id}")
+    @Secured("READ_PRIVILEGE")
     public Role findById(@PathVariable Long id) {
         Optional<Role> role = roleRepository.findById(id);
         Role r = role.get();

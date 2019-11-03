@@ -1,5 +1,8 @@
-package ir.mb.demo.security;
+package ir.mb.demo.security.rest;
 
+import ir.mb.demo.security.model.User;
+import ir.mb.demo.security.entity.Role;
+import ir.mb.demo.security.entity.UserEntity;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 import org.springframework.security.core.Authentication;

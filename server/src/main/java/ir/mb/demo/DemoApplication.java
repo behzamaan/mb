@@ -1,9 +1,9 @@
 package ir.mb.demo;
 
-import ir.mb.demo.security.Role;
-import ir.mb.demo.security.UserEntity;
-import ir.mb.demo.security.RoleRepository;
-import ir.mb.demo.security.UserRepository;
+import ir.mb.demo.security.entity.Role;
+import ir.mb.demo.security.entity.UserEntity;
+import ir.mb.demo.security.repository.RoleRepository;
+import ir.mb.demo.security.repository.UserRepository;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,6 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.transaction.Transactional;
 import java.util.Collections;
@@ -42,7 +41,7 @@ public class DemoApplication implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        createUserIfNotFound();
+//        createUserIfNotFound();
     }
     @Transactional
     void createUserIfNotFound() {

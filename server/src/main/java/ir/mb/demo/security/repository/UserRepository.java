@@ -1,5 +1,6 @@
-package ir.mb.demo.security;
+package ir.mb.demo.security.repository;
 
+import ir.mb.demo.security.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;
 

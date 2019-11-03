@@ -1,6 +1,5 @@
 package ir.mb.demo.base;
 
-import ir.mb.demo.security.UserEntity;
 import org.springframework.data.jpa.domain.Specification;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;

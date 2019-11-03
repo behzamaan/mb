@@ -1,9 +1,8 @@
-package ir.mb.demo.security;
+package ir.mb.demo.security.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -20,6 +19,7 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotNull(message = " نام کاربری ")
+    @Column(unique = true)
     private String username;
     @NotNull(message = " نام  ")
     private String firstName;

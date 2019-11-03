@@ -1,17 +1,18 @@
-package ir.mb.demo.security;
+package ir.mb.demo.security.rest;
 
 import ir.mb.demo.base.*;
+import ir.mb.demo.security.entity.UserEntity;
+import ir.mb.demo.security.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @RestController
 @RequestMapping("users")
@@ -22,6 +23,7 @@ public class UserRest extends BaseRest<UserEntity> {
     UserRepository userRepository;
 
     @GetMapping("/")
+    @PreAuthorize("hasAuthority('READ_PRIVILEGE')")
     public List<UserEntity> findAll() {
         List<UserEntity> all=new ArrayList<>();
         userRepository.findAll().forEach(c->{
@@ -33,6 +35,7 @@ public class UserRest extends BaseRest<UserEntity> {
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('READ_PRIVILEGE')")
     public List<UserEntity> search(@RequestParam(value = "search") String search) {
         List<UserEntity> list = new ArrayList();
         userRepository.findAll(getSpecification(search)).forEach(e->{
@@ -44,7 +47,7 @@ public class UserRest extends BaseRest<UserEntity> {
     }
 
 
-
+    @PreAuthorize("hasAuthority('READ_PRIVILEGE')")
     @GetMapping("/{id}")
     public UserEntity findById(@PathVariable Long id) {
         Optional<UserEntity> userEntity = userRepository.findById(id);
@@ -55,11 +58,13 @@ public class UserRest extends BaseRest<UserEntity> {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('WRITE_PRIVILEGE')")
     public UserEntity save(@Valid @RequestBody UserEntity entity) {
         return userRepository.save(entity);
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('DELETE_PRIVILEGE')")
     public void deleteById(@PathVariable Long id) {
          userRepository.deleteById(id);
     }

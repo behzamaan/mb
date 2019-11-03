@@ -1,4 +1,4 @@
-package ir.mb.demo.security;
+package ir.mb.demo.security.model;
 
 import lombok.Data;
 import lombok.Getter;

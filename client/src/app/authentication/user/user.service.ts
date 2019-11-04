@@ -21,7 +21,7 @@ export class UserService {
     return this.http.get<any>(this.USER_API, {params: search});
   }
 
-  saveOrUpdate(user): Observable<any> {
+  saveOrUpdate(user) {
     return this.http.post(this.USER_API, user);
   }
 

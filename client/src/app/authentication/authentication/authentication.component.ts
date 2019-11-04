@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from '../../authentication.service';
 import {Router} from '@angular/router';
+import {AppComponent} from '../../app.component';
 
 @Component({
   selector: 'app-authentication',
@@ -19,7 +20,7 @@ export class AuthenticationComponent implements OnInit {
       .subscribe(
         () => {
           console.log('Autentication logout');
-          this.router.navigate(['/']);
+          this.router.navigate(['login']);
         }
       );
   }

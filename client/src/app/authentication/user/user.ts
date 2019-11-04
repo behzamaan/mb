@@ -1,12 +1,12 @@
 export class User {
   password: string;
-  id: number;
+  id = null;
   username: string;
   firstName: string;
   lastName: string;
   email: string;
   enabled: boolean;
   tokenExpired: boolean;
-  roles: [];
+  roles = null;
 }
 

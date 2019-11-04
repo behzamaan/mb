@@ -1,3 +1,41 @@
-<p>
-  role-create works!
-</p>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">نقش</h5>
+    <form #formRole="ngForm" novalidate>
+      <div class="form-row">
+        <div class="col-sm-4">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">ایمیل</span>
+            </div>
+            <input #name="ngModel" #nameElement required name="email" type="text" [(ngModel)]="role.name"
+                   class="form-control" placeholder="role"
+                   aria-label="name"
+                   aria-describedby="basic-addon1">
+          </div>
+          <div *ngIf="name.invalid && name.touched" class="alert alert-danger" role="alert">
+            email is required.
+          </div>
+
+        </div>
+
+      </div>
+    </form>
+    <div class="bottom-form">
+      <button  mat-raised-button (click)="saveOrUpdate(role)" color="primary">ذخیره
+      </button>
+      <button mat-raised-button (click)="back()" color="primary">بازگشت</button>
+    </div>
+  </div>
+</div>
+
+<!--[disabled]="formrole.invalid"-->
+
+
+
+
+
+
+
+
+

@@ -1,5 +1,6 @@
 package ir.mb.demo.security.rest;
 
+import ir.mb.demo.base.BaseRest;
 import ir.mb.demo.security.entity.Role;
 import ir.mb.demo.security.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("roles")
 @RequiredArgsConstructor
-public class RoleRest {
+public class RoleRest extends BaseRest<Role> {
 
     @Autowired
     RoleRepository roleRepository;
@@ -25,13 +26,27 @@ public class RoleRest {
         List<Role> all=new ArrayList<>();
         roleRepository.findAll().forEach(role->{
             role.setUsers(null);
+            role.setPrivileges(null);
             all.add(role);
         });
         return  all;
     }
 
+    @GetMapping
+    @PreAuthorize("hasAuthority('READ')")
+    public List<Role> search(@RequestParam(value = "search") String search) {
+        List<Role> list = new ArrayList<>();
+        roleRepository.findAll(getSpecification(search)).forEach(e->{
+            Role entity= (Role) e;
+            entity.setPrivileges(null);
+            entity.setUsers(null);
+            list.add(entity);
+        });
+        return list;
+    }
+
     @GetMapping("/{id}")
-    @Secured("READ_PRIVILEGE")
+    @Secured("READ")
     public Role findById(@PathVariable Long id) {
         Optional<Role> role = roleRepository.findById(id);
         Role r = role.get();

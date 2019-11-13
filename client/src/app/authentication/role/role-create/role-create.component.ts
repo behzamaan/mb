@@ -42,29 +42,14 @@ export class RoleCreateComponent implements OnInit {
     return role;
   }
 
-  public loadPrivileges(): any {
-    let privileges = new  Array<Privilege>();
+  public loadPrivileges() {
     if (this.p !== null) {
       const s = new SearchBuilder()
         .add('name', Search.Contains, this.p)
         .build();
-
-      this.privilegeService.search(s).subscribe(
-        e => {
-          this.privileges = e;
-          privileges = e;
-          console.log(this.privileges);
-        }
-      );
-      return privileges;
+      this.privilegeService.search(s).subscribe(e => this.privileges = e);
     } else {
-      this.privilegeService.findAll().subscribe(
-        e => {
-          this.privileges = e;
-          privileges = e;
-          console.log(this.privileges);
-        }
-      );
+      this.privilegeService.findAll().subscribe(e => this.privileges = e);
     }
   }
 

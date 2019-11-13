@@ -1,12 +1,14 @@
+import {Role} from '../role/role';
+
 export class User {
-  password: string;
-  id = null;
-  username: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  enabled: boolean;
-  tokenExpired: boolean;
-  roles = null;
+  password: string = null;
+  id: number = null;
+  username: string = null;
+  firstName: string = null;
+  lastName: string = null;
+  email: string = null;
+  enabled: boolean = null;
+  tokenExpired: boolean = null;
+  roles: Array<Role> = [];
 }
 

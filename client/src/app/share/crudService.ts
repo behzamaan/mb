@@ -2,7 +2,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
 
-export class CrudService {
+export class CrudService<E> {
   private http: HttpClient;
   private router: Router;
   private readonly api: string ;
@@ -13,28 +13,27 @@ export class CrudService {
     this.api = api;
   }
 
-
-  all(): Observable<any> {
-    return this.http.get(this.api + '/');
+  findAll(): Observable<any> {
+    return this.http.get<Array<E>>(this.api + '/');
   }
 
-  search(p): Observable<any> {
+  search(p): Observable<Array<E>> {
     const search = new HttpParams().set('search', p);
-    return this.http.get<any>(this.api, {params: search});
+    return this.http.get<Array<E>>(this.api, {params: search});
   }
 
-  saveOrUpdate(user) {
-    return this.http.post(this.api, user);
+  saveOrUpdate(model: E) {
+    return this.http.post(this.api, model);
   }
 
-  load(id: Number) {
+  findById(id: Number) {
     const url = `${this.api}/${id}`;
-    return this.http.get<any>(url);
+    return this.http.get<E>(url);
   }
 
-  remove(id: Number): Observable<{}> {
+  deleteById(id: Number): Observable<{}> {
     const url = `${this.api}/${id}`;
-    return this.http.delete<any>(url);
+    return this.http.delete<E>(url);
   }
 
 }

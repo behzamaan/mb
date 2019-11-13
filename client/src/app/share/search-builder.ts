@@ -1,10 +1,11 @@
 import {SearchModel} from './search-model';
+import {Search} from './search.enum';
 
-export class SearchBuilder {
+export class SearchBuilder  {
 
    items: Array<SearchModel>;
 
-  public add(key: string, operation: string, value: Object): SearchBuilder {
+  public add(key: string, operation: Search, value: Object): SearchBuilder {
     this.items = new Array<SearchModel>();
     const m = new SearchModel();
     m.key = key;

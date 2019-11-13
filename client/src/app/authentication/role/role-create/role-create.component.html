@@ -3,7 +3,7 @@
     <h5 class="card-title">نقش</h5>
     <form #formRole="ngForm" novalidate>
       <div class="form-row">
-        <div class="col-sm-4">
+        <div class="col">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">ایمیل</span>
@@ -16,14 +16,24 @@
           <div *ngIf="name.invalid && name.touched" class="alert alert-danger" role="alert">
             email is required.
           </div>
-
+          <div class="bottom-form">
+            <button  mat-raised-button (click)="saveOrUpdate(role)" color="primary">ذخیره
+            </button>
+          </div>
+        </div>
+        <div class="col" >
+          <input type="text" [(ngModel)]="p"  (keyup)="loadPrivileges(p)" name="p" />
+          <ul>
+            <li *ngFor="let  privilege of privileges ">
+              {{ privilege.name }}
+              <input type="checkbox" id="{{privilege.id}}">
+            </li>
+          </ul>
         </div>
 
       </div>
     </form>
     <div class="bottom-form">
-      <button  mat-raised-button (click)="saveOrUpdate(role)" color="primary">ذخیره
-      </button>
       <button mat-raised-button (click)="back()" color="primary">بازگشت</button>
     </div>
   </div>

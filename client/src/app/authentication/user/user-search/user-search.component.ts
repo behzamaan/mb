@@ -1,9 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from '../user.service';
 import {User} from '../user';
-import {Router} from '@angular/router';
-import {el} from '@angular/platform-browser/testing/src/browser_util';
 import {SearchBuilder} from '../../../share/search-builder';
+import {Search} from '../../../share/search.enum';
 
 @Component({
   selector: 'app-user-search',
@@ -11,35 +10,35 @@ import {SearchBuilder} from '../../../share/search-builder';
   styleUrls: ['./user-search.component.css']
 })
 export class UserSearchComponent implements OnInit {
-  constructor(private userService: UserService, private router: Router) { }
-  user =  <User> {};
+
   users: Array<User>;
   displayedColumns: string[] = ['username', 'firstName', 'lastName', 'email', 'enabled', 'tokenExpired' , 'remove' , 'edit'];
+  user =  new User();
+
+  constructor(private userService: UserService) {}
 
 
   ngOnInit() {
-    if (this.user.username === undefined) {
-      this.userService.all().subscribe(list => {
-        this.users = list;
-        console.log(this.users[0]);
-      });
+    if (this.user.username === null) {
+      this.findAll();
     } else {
       this.search();
     }
   }
+
+  findAll() {
+    this.userService.findAll().subscribe(users => this.users = users);
+  }
+
   search() {
     const s = new SearchBuilder()
-      .add('username', ':', this.user.username)
+      .add('username', Search.Contains, this.user.username)
       .build();
-    this.userService.search(s).subscribe(list => {
-      this.users = list;
-      console.log(this.users[0]);
-    });
+    this.userService.search(s).subscribe(list => this.users = list);
   }
 
   remove(id: Number) {
-
-    this.userService.remove(id).subscribe(() =>{
+    this.userService.deleteById(id).subscribe(() => {
       console.log('remove entity by id : ' + id);
     });
   }

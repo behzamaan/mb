@@ -1,8 +1,10 @@
 package ir.mb.demo.security.config;
 
 import ir.mb.demo.security.service.AuthenticationProviderImpl;
+import ir.mb.demo.security.service.PEvaluator;
 import ir.mb.demo.security.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,6 +14,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.access.AccessDeniedHandlerImpl;
+import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -33,12 +38,7 @@ UserDetailsServiceImpl myUserDetailsService;
 
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-
     auth.authenticationProvider(authenticationProvider).userDetailsService(myUserDetailsService);
-//        auth.inMemoryAuthentication()
-//                .withUser("admin").password(encoder().encode("1")).roles("ADMIN")
-//                .and()
-//                .withUser("user").password(encoder().encode("userPass")).roles("USER");
     }
 
     @Override

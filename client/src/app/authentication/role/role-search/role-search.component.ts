@@ -3,6 +3,9 @@ import {SearchBuilder} from '../../../share/search-builder';
 
 import {Role} from '../role';
 import {RoleService} from '../role.service';
+import {PrivilegeService} from '../../privilege/privilege.service';
+import {Privilege} from '../../privilege/privilege';
+import {log} from 'util';
 
 @Component({
   selector: 'app-role-search',
@@ -10,36 +13,41 @@ import {RoleService} from '../role.service';
   styleUrls: ['./role-search.component.css']
 })
 export class RoleSearchComponent implements OnInit {
-  role =  <Role> {};
+  role =  new Role();
   roles: Array<Role>;
   displayedColumns: string[] = ['name'];
+  list: Array<any> = [];
 
-  constructor(private roleService: RoleService) { }
+  constructor(private roleService: RoleService, private privilegeService: PrivilegeService) { }
 
   ngOnInit() {
-    if (this.role.name === undefined) {
-      this.roleService.all().subscribe(list => {
-        this.roles = list;
-        console.log(this.roles[0]);
-      });
+    this.privilegeService.findAll()
+      .subscribe(list => this.getLog(list));
+
+    if (this.role.name === null) {
+      this.findAll();
     } else {
       this.search();
     }
+  }
+
+  private getLog(list) {
+    console.log(JSON.stringify(list));
+  }
+
+  findAll() {
+    this.roleService.findAll().subscribe(roles => this.roles = roles);
   }
 
   search() {
     const s = new SearchBuilder()
       .add('name', ':', this.role.name)
       .build();
-    this.roleService.search(s).subscribe(list => {
-      this.roles = list;
-      console.log(this.roles[0]);
-    });
+    this.roleService.search(s).subscribe(list => this.roles = list);
   }
 
   remove(id: Number) {
-
-    this.roleService.remove(id).subscribe(() => {
+    this.roleService.deleteById(id).subscribe(() => {
       console.log('remove entity by id : ' + id);
     });
   }

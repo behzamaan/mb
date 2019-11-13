@@ -1,7 +1,10 @@
 package ir.mb.demo.security.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,6 +13,7 @@ import java.util.Collection;
 @Entity
 @Data
 @RequiredArgsConstructor
+@ToString
 public class Privilege {
 
     @Id

@@ -1,7 +1,9 @@
+import {Search} from './search.enum';
+
 export class SearchModel {
 
   private _key: string;
-  private _operation: string ;
+  private _operation: Search ;
   private _value: Object ;
 
 
@@ -13,11 +15,11 @@ export class SearchModel {
     this._key = value;
   }
 
-  get operation(): string {
+  get operation(): Search {
     return this._operation;
   }
 
-  set operation(value: string) {
+  set operation(value: Search) {
     this._operation = value;
   }
 

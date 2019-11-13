@@ -2,10 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../user';
 
 import {UserService} from '../user.service';
-import {ActivatedRoute, ParamMap, Params, Route, Router} from '@angular/router';
-import {switchMap} from 'rxjs/operators';
-import {load} from '@angular/core/src/render3';
-import { Location } from '@angular/common';
+import {ActivatedRoute} from '@angular/router';
+import {Location} from '@angular/common';
 
 
 @Component({
@@ -21,15 +19,16 @@ export class UserCreateComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.load(params.get('id'));
+      const id = params.get('id');
+      if (id !== null) {
+        this.load(id);
+      }
     });
   }
 
-  delete(id: Number) {
-  }
 
   load(id: any): any {
-    this.userService.load(id).subscribe(model  => {
+    this.userService.findById(id).subscribe(model  => {
         this.user = model;
     });
     console.log(id);

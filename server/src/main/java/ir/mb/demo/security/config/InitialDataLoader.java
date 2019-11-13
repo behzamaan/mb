@@ -46,12 +46,15 @@ public class InitialDataLoader implements
         if (alreadySetup)
             return;
         Privilege readPrivilege
-                = createPrivilegeIfNotFound("READ_PRIVILEGE");
+                = createPrivilegeIfNotFound("READ");
         Privilege writePrivilege
-                = createPrivilegeIfNotFound("WRITE_PRIVILEGE");
+                = createPrivilegeIfNotFound("WRITE");
+        Privilege deletePrivilege
+                = createPrivilegeIfNotFound("DELETE");
+
 
         List<Privilege> adminPrivileges = Arrays.asList(
-                readPrivilege, writePrivilege);
+                readPrivilege, writePrivilege,deletePrivilege);
         createRoleIfNotFound("ROLE_ADMIN", adminPrivileges);
         createRoleIfNotFound("ROLE_USER", Arrays.asList(readPrivilege));
 

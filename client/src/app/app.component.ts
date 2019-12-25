@@ -19,8 +19,7 @@ export class AppComponent implements OnInit, OnDestroy {
     window['angularComponentReference'] = { component: this, zone: this.ngZone, loadAngularFunction: () => {
         return this.angularFunctionCalled();
       } };
-
-    const c = this.authenticationService.currentUserValue;
+    const c = this.authenticationService.checkCredentials();
     if (c) {
       this.router.navigate(['authentication']);
     } else {

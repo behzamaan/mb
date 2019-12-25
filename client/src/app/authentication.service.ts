@@ -80,11 +80,13 @@ export class AuthenticationService {
 
   }
 
-  checkCredentials() {
+  checkCredentials(): boolean {
     if (!Cookie.check('access_token')) {
       console.log('logout');
-      this.router.navigate(['/login']);
+      return false;
+
     }
+    return true;
   }
 
   logout() {

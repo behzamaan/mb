@@ -8,17 +8,8 @@ import { Router} from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  constructor(private authenticationService: AuthenticationService, private router: Router, private ngZone: NgZone ) {
-  }
-
-  angularFunctionCalled() {
-    alert('Angular 2+ function is called');
-  }
-
+  constructor(private authenticationService: AuthenticationService, private router: Router, private ngZone: NgZone ) {}
   ngOnInit(): void {
-    window['angularComponentReference'] = { component: this, zone: this.ngZone, loadAngularFunction: () => {
-        return this.angularFunctionCalled();
-      } };
     const c = this.authenticationService.checkCredentials();
     if (c) {
       this.router.navigate(['authentication']);
@@ -27,7 +18,6 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-
   logout() {
     this.authenticationService.logout();
   }
@@ -35,5 +25,4 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.logout();
   }
-
 }

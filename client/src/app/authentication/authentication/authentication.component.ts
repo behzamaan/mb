@@ -16,12 +16,6 @@ export class AuthenticationComponent implements OnInit {
   }
 
   logout() {
-    this.auth.logout()
-      .subscribe(
-        () => {
-          console.log('Autentication logout');
-          this.router.navigate(['login']);
-        }
-      );
+    this.auth.logout();
   }
 }

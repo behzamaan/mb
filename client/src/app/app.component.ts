@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, NgZone, OnDestroy, OnInit} from '@angular/core';
 import {AuthenticationService} from './authentication.service';
 import { Router} from '@angular/router';
 
@@ -8,10 +8,18 @@ import { Router} from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  constructor(private authenticationService: AuthenticationService, private router: Router) {
+  constructor(private authenticationService: AuthenticationService, private router: Router, private ngZone: NgZone ) {
+  }
+
+  angularFunctionCalled() {
+    alert('Angular 2+ function is called');
   }
 
   ngOnInit(): void {
+    window['angularComponentReference'] = { component: this, zone: this.ngZone, loadAngularFunction: () => {
+        return this.angularFunctionCalled();
+      } };
+
     const c = this.authenticationService.currentUserValue;
     if (c) {
       this.router.navigate(['authentication']);
@@ -22,13 +30,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
   logout() {
-    this.authenticationService.logout()
-      .subscribe(
-        () => {
-          console.log('Autentication logout');
-          // this.router.navigate(['/authentication/login']);
-        }
-      );
+    this.authenticationService.logout();
   }
 
   ngOnDestroy(): void {

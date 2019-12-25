@@ -18,6 +18,7 @@ import {AuthInterceptor} from './auth-interceptor';
 import {LoginComponent} from './authentication/login/login.component';
 import {HttpErrorInterceptor} from './http-error-interceptor';
 import {AppPrimeModule} from './app-prime.module';
+import {CookieService} from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import {AppPrimeModule} from './app-prime.module';
     AppRoutingModule,
     AppPrimeModule
   ],
-  providers: [
+  providers: [CookieService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

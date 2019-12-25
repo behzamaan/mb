@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SearchBuilder} from '../../../share/search-builder';
 
 import {Role} from '../role';
 import {RoleService} from '../role.service';
 import {PrivilegeService} from '../../privilege/privilege.service';
-import {Privilege} from '../../privilege/privilege';
-import {log} from 'util';
+import {Search} from '../../../share/search.enum';
 
 @Component({
   selector: 'app-role-search',
@@ -41,7 +40,7 @@ export class RoleSearchComponent implements OnInit {
 
   search() {
     const s = new SearchBuilder()
-      .add('name', ':', this.role.name)
+      .add('name', Search.Quality, this.role.name)
       .build();
     this.roleService.search(s).subscribe(list => this.roles = list);
   }

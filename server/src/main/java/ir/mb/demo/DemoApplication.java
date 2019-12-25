@@ -12,12 +12,14 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
 import javax.transaction.Transactional;
 import java.util.Collections;
 
 
 @SpringBootApplication
+@EnableResourceServer
 public class DemoApplication implements ApplicationRunner {
 
     Log log= LogFactory.getLog(getClass());

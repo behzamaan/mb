@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.currentUser()) {
+    if (this.checkCredentials()) {
       // authorised so return true
       return true;
     }
@@ -22,12 +22,12 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     return false;
   }
 
-  private currentUser() {
-    return this.authenticationService.currentUserValue;
+  private checkCredentials() {
+    return this.authenticationService.checkCredentials();
   }
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.currentUser()) {
+    if (this.checkCredentials()) {
       // authorised so return true
       return true;
     }

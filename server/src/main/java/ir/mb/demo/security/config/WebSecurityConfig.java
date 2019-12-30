@@ -39,15 +39,21 @@ UserDetailsServiceImpl myUserDetailsService;
         http
                 .requestMatchers()
                 .antMatchers("/login", "/oauth/authorize")
+                .antMatchers("/resources/static/**")
+                .antMatchers("/", "/index", "/logout", "/error")
+                .antMatchers("/*.js","/*.js.map","/*.png","/*.jpeg")
+
                 .and()
                 .authorizeRequests()
                 .antMatchers("/oauth/authorize").permitAll()
                 .antMatchers("/resources/**").permitAll()
+                .antMatchers("/resources/static/**").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/", "/index", "/logout", "/error").permitAll()
-                .antMatchers("/*.js").permitAll()
+                .antMatchers("/*.js","/*.js.map","/*.png","/*.jpeg").permitAll()
                 .anyRequest().authenticated()
                 .and()
+
                 .formLogin().permitAll();
 
 //        http.cors().configurationSource(corsConfigurationSource()).and().csrf().disable().

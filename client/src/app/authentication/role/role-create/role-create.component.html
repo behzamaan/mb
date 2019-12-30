@@ -22,7 +22,7 @@
           </div>
         </div>
         <div class="col" >
-          <input type="text" [(ngModel)]="p"  (keyup)="loadPrivileges(p)" name="p" />
+          <input type="text" [(ngModel)]="p" (keyup)="loadPrivileges()" name="p" />
           <ul>
             <li *ngFor="let  privilege of privileges ">
               {{ privilege.name }}

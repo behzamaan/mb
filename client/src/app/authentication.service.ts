@@ -12,18 +12,18 @@ import { Cookie } from 'ng2-cookies/cookie';
 
 @Injectable({providedIn: 'root'})
 export class AuthenticationService {
-  private currentUserSubject: BehaviorSubject<Autentication>;
+  // private currentUserSubject: BehaviorSubject<Autentication>;
   public currentUser: Observable<Autentication>;
 
 
   constructor(private http: HttpClient, private router: Router) {
-    this.currentUserSubject = new BehaviorSubject<Autentication>(JSON.parse(localStorage.getItem('currentUser')));
-    this.currentUser = this.currentUserSubject.asObservable();
+    // this.currentUserSubject = new BehaviorSubject<Autentication>(JSON.parse(localStorage.getItem('currentUser')));
+    // this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  public get currentUserValue(): Autentication {
-    return this.currentUserSubject.value;
-  }
+  // public get currentUserValue(): Autentication {
+  //   return this.currentUserSubject.value;
+  // }
 
   // login(username: string, password: string): Observable<any>  {
   //   const headers = new HttpHeaders((username && password) ? {

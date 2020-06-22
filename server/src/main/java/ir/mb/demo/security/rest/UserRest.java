@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,9 @@ public class UserRest extends BaseRest<UserEntity> {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    PasswordEncoder encoder;
 
     @GetMapping("/")
     @PreAuthorize("hasAuthority('READ')")
@@ -60,8 +65,10 @@ public class UserRest extends BaseRest<UserEntity> {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('WRITE')")
-    public UserEntity save(@Valid @RequestBody UserEntity entity) {
+//    @PreAuthorize("hasAuthority('WRITE')")
+    public UserEntity save(@RequestBody UserEntity entity) {
+        if (entity.getPassword() !=null && !entity.getPassword().equals(""))
+            entity.setPassword(encoder.encode(entity.getPassword()));
         return userRepository.save(entity);
     }
 

@@ -11,6 +11,7 @@ import {AuthenticationComponent} from './authentication/authentication.component
 import {UserSearchComponent} from './user/user-search/user-search.component';
 import {RoleSearchComponent} from './role/role-search/role-search.component';
 import {RoleCreateComponent} from './role/role-create/role-create.component';
+import {PrivilegeSearchComponent} from './privilege/privilege-search.component';
 
 
 const authenticationRoutes: Routes = [
@@ -32,6 +33,12 @@ const authenticationRoutes: Routes = [
           {path: 'search', component: RoleSearchComponent},
           {path: 'edit/:id', component: RoleCreateComponent},
           {path: 'create', component: RoleCreateComponent}
+        ]
+      },
+      {
+        path: 'privilege', canActivateChild : [AuthGuard],
+        children: [
+          {path: 'search', component: PrivilegeSearchComponent}
         ]
       }
     ]

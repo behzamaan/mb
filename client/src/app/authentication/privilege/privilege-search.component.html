@@ -1,0 +1,62 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">**************</h5>
+
+
+      <!--  <div class="col-sm">-->
+      <mat-accordion>
+        <mat-expansion-panel [expanded]="true" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+
+            </mat-panel-title>
+            <mat-panel-description>
+
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+
+          <div class="col" >
+            <input type="text" [(ngModel)]="p" (keyup)="loadPrivileges()" name="p" />
+            <ul>
+              <li *ngFor="let  privilege of privileges ">
+                {{ privilege.name }}
+                <input type="checkbox" id="{{privilege.id}}">
+              </li>
+            </ul>
+          </div>
+
+          <div>
+
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <!--  </div>-->
+
+
+    </div>
+
+
+
+
+
+    <div class="bottom-form">
+<!--      <button mat-button mat-dialog-close>انصراف</button>-->
+<!--      <button  mat-raised-button (click)="saveOrUpdate(role)" color="primary">ذخیره</button>-->
+    </div>
+</div>
+
+<!--[disabled]="formrole.invalid"-->
+
+
+
+
+
+
+
+
+
+
+
+

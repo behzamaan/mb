@@ -14,7 +14,7 @@ export class AppComponent implements OnInit, OnDestroy {
     if (c) {
       this.router.navigate(['authentication']);
     } else {
-      this.router.navigate(['/login']);
+      this.router.navigate(['login']);
     }
   }
 

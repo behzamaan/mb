@@ -6,7 +6,7 @@
         <div class="col">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1">ایمیل</span>
+              <span class="input-group-text" id="basic-addon1">نقش</span>
             </div>
             <input #name="ngModel" #nameElement required name="email" type="text" [(ngModel)]="role.name"
                    class="form-control" placeholder="role"
@@ -17,24 +17,16 @@
             email is required.
           </div>
           <div class="bottom-form">
-            <button  mat-raised-button (click)="saveOrUpdate(role)" color="primary">ذخیره
-            </button>
+            <mat-icon style="cursor: pointer" (click)="saveOrUpdate(role)">add_box</mat-icon>
           </div>
         </div>
-        <div class="col" >
-          <input type="text" [(ngModel)]="p" (keyup)="loadPrivileges()" name="p" />
-          <ul>
-            <li *ngFor="let  privilege of privileges ">
-              {{ privilege.name }}
-              <input type="checkbox" id="{{privilege.id}}">
-            </li>
-          </ul>
-        </div>
+
 
       </div>
     </form>
     <div class="bottom-form">
-      <button mat-raised-button (click)="back()" color="primary">بازگشت</button>
+      <button mat-button mat-dialog-close>انصراف</button>
+      <button  mat-raised-button (click)="saveOrUpdate(role)" color="primary">ذخیره</button>
     </div>
   </div>
 </div>

@@ -13,6 +13,7 @@ import {UserSearchComponent} from './user/user-search/user-search.component';
 
 import {RoleCreateComponent} from './role/role-create/role-create.component';
 import {RoleSearchComponent} from './role/role-search/role-search.component';
+import {PrivilegeSearchComponent} from './privilege/privilege-search.component';
 
 
 
@@ -23,7 +24,8 @@ import {RoleSearchComponent} from './role/role-search/role-search.component';
     UserDisplayComponent,
     UserSearchComponent,
     RoleCreateComponent,
-    RoleSearchComponent
+    RoleSearchComponent,
+    PrivilegeSearchComponent
   ],
   imports: [
     CommonModule,

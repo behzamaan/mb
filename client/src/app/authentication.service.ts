@@ -40,6 +40,10 @@ export class AuthenticationService {
   // }
 
   login(username: string, password: string)  {
+    //http basic
+    // const headers = new HttpHeaders((username && password) ? {
+    //   authentication: 'Basic ' + btoa(username + ':' + password)
+    // } : {});
 
     const param = new HttpParams()
       .set('username', username)
@@ -49,7 +53,7 @@ export class AuthenticationService {
     const httpOptions = {
       headers: new HttpHeaders( {
         'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
-        'Authorization': 'basic ' + btoa('fooClientIdPassword:secret')} )
+        'Authorization': 'basic ' + btoa('ui:secret')} )
     };
 
     console.log(param.toString());

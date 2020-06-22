@@ -11,9 +11,16 @@ import {AppComponent} from '../../app.component';
 export class AuthenticationComponent implements OnInit {
   constructor(private auth: AuthenticationService, private router: Router) {
   }
+  showFiller = false;
+  events: string[] = [];
+  opened: boolean;
+
 
   ngOnInit() {
   }
+
+
+
 
   logout() {
     this.auth.logout();

@@ -49,7 +49,7 @@ public class UserEntity {
         this.roles = roles;
     }
 //    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    @JsonManagedReference
+//    @JsonManagedReference
     @ManyToMany
     @JoinTable(
             name = "users_roles",

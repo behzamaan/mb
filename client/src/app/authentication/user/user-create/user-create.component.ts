@@ -36,6 +36,7 @@ export class UserCreateComponent implements OnInit {
   }
 
   saveOrUpdate(model: User): User {
+    model.roles=null;
     this.userService.saveOrUpdate(model).subscribe(
       (user) => {
         return user;

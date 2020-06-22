@@ -46,17 +46,19 @@ public class RoleRest extends BaseRest<Role> {
     }
 
     @GetMapping("/{id}")
-    @Secured("READ")
+//    @Secured("READ")
     public Role findById(@PathVariable Long id) {
         Optional<Role> role = roleRepository.findById(id);
         Role r = role.get();
         r.setUsers(null);
+        r.getPrivileges().forEach(e-> e.setRoles(null));
         return r;
     }
 
     @PostMapping
-    public Role save(@RequestBody Role entity) {
-        return roleRepository.save(entity);
+    public Role save(@RequestBody Role role) {
+
+        return roleRepository.save(role);
     }
 
     @DeleteMapping("/{id}")

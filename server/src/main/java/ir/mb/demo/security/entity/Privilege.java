@@ -1,7 +1,5 @@
 package ir.mb.demo.security.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
@@ -25,6 +23,9 @@ public class Privilege {
 
     @ManyToMany(mappedBy = "privileges")
     private Collection<Role> roles;
+
+    @ManyToMany(mappedBy = "privileges")
+    private Collection<Division> divisions;
 
     public Privilege(@NotNull String name) {
         this.name = name;

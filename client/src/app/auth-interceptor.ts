@@ -13,7 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
     if (request.url !== '/oauth/token') {
       const httpOptions = {
         headers: new HttpHeaders({
-          'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
+          // 'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
           'Authorization': 'Bearer ' + Cookie.get('access_token')
         })
       };

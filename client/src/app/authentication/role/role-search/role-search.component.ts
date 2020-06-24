@@ -17,8 +17,8 @@ import {PrivilegeSearchComponent} from '../../privilege/privilege-search.compone
 })
 export class RoleSearchComponent implements OnInit {
   role =  new Role();
-  roles: Array<Role>;
-  displayedColumns: string[] = ['name','edit','privilege'];
+ public roles: Array<Role>;
+  displayedColumns: string[] = ['name','edit','privilege','privilege-description'];
   list: Array<any> = [];
   privileges = new Array<Privilege>();
   p: string = null;
@@ -39,24 +39,26 @@ export class RoleSearchComponent implements OnInit {
     });
   }
 
-  openPrivilegeDialog(id : Number): void {
+  openPrivilegeDialog(role : Role,index : any): void {
     // if (id == null) {
     //
     // }
     const dialogRef = this.dialog.open(PrivilegeSearchComponent, {
-      data: {idx:id}
+      data: {idx:role.id}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.ngOnInit();
+      console.log(JSON.stringify(result));
+      this.privileges=result;
+      // this.roles[index].privileges=result;
+      // this.ngOnInit();
     });
   }
 
 
   ngOnInit() {
-    this.privilegeService.findAll()
-      .subscribe(list => this.getLog(list));
+    // this.privilegeService.findAll()
+    //   .then(list => this.getLog(list));
 
     if (this.role.name === null) {
       this.findAll();
@@ -71,9 +73,9 @@ export class RoleSearchComponent implements OnInit {
       const s = new SearchBuilder()
         .add('name', Search.Contains, this.p)
         .build();
-      this.privilegeService.search(s).subscribe(e => this.privileges = e);
+      this.privilegeService.search(s).then(e => this.privileges = e);
     } else {
-      this.privilegeService.findAll().subscribe(e => this.privileges = e);
+      this.privilegeService.findAll().then(e => this.privileges = e);
     }
   }
 
@@ -82,14 +84,14 @@ export class RoleSearchComponent implements OnInit {
   }
 
   findAll() {
-    this.roleService.findAll().subscribe(roles => this.roles = roles);
+    this.roleService.findAll().then(roles => this.roles = roles);
   }
 
   search() {
     const s = new SearchBuilder()
       .add('name', Search.Quality, this.role.name)
       .build();
-    this.roleService.search(s).subscribe(list => this.roles = list);
+    this.roleService.search(s).then(list => this.roles = list);
   }
 
   remove(id: Number) {

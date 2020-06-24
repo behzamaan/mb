@@ -19,9 +19,9 @@
           <div class="col" >
             <input type="text" [(ngModel)]="p" (keyup)="loadPrivileges()" name="p" />
             <ul>
-              <li *ngFor="let  privilege of privileges ">
-                {{ privilege.name }}
-                <input type="checkbox" id="{{privilege.id}}">
+              <li *ngFor="let  privilege of selection "  >
+                {{ privilege.value.name }}
+                <input type="checkbox" [(ngModel)]="privilege.isSelected" (ngModelChange)="changeSelection(privilege)"  id="{{privilege.value.id}}"   >
               </li>
             </ul>
           </div>

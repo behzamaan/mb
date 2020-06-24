@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 
 
 
@@ -6,7 +6,8 @@ import {Privilege} from './privilege';
 import {PrivilegeService} from './privilege.service';
 import {SearchBuilder} from '../../share/search-builder';
 import {Search} from '../../share/search.enum';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+
 
 
 
@@ -15,12 +16,15 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
   templateUrl: './privilege-search.component.html',
   styleUrls: ['./privilege-search.component.css']
 })
-export class PrivilegeSearchComponent implements OnInit {
+export class PrivilegeSearchComponent implements OnInit,OnDestroy {
   privilege =  new Privilege();
   list: Array<any> = [];
   privileges = new Array<Privilege>();
+  selection=new Array<MbCheckBox>();
   p: string = null;
-  constructor(private privilegeService:PrivilegeService,@Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  constructor(private privilegeService:PrivilegeService,@Inject(MAT_DIALOG_DATA) public data: any,
+  public dialogRef: MatDialogRef<PrivilegeSearchComponent>) { }
 
   ngOnInit() {
     this.loadPrivileges();
@@ -32,23 +36,19 @@ export class PrivilegeSearchComponent implements OnInit {
       const s = new SearchBuilder()
         .add('name', Search.Contains, this.p)
         .build();
-      this.privilegeService.search(s).subscribe(e => this.privileges = e);
+      this.privilegeService.search(s).then(e =>this.extracted(e));
     } else {
-      this.privilegeService.findAll().subscribe(e => this.privileges = e);
+      this.privilegeService.findAll().then(e =>this.extracted(e));
     }
   }
 
-
-
-  findAll() {
-    this.privilegeService.findAll().subscribe(privileges => this.privileges = privileges);
-  }
-
-  search() {
-    const s = new SearchBuilder()
-      .add('name', Search.Quality, this.privilege.name)
-      .build();
-    this.privilegeService.search(s).subscribe(list => this.privileges = list);
+  private extracted(e) {
+    e.forEach(x => {
+      let checkbox: MbCheckBox = {} as MbCheckBox;
+      checkbox.isSelected = null;
+      checkbox.value = x;
+      this.selection.push(checkbox);
+    });
   }
 
   remove(id: Number) {
@@ -56,5 +56,26 @@ export class PrivilegeSearchComponent implements OnInit {
       console.log('remove entity by id : ' + id);
     });
   }
+
+  ngOnDestroy(): void {
+    this.dialogRef.close(this.privileges);
+    console.log('************************************************')
+    console.log('destroy ... \n' + JSON.stringify(this.data.privileges));
+    console.log('************************************************')
+  }
+
+  changeSelection(box:MbCheckBox) {
+    if (box.isSelected) {
+      this.privileges.push(box.value);
+    } else {
+      const index: number = this.privileges.indexOf(box.value);
+      if (index !== -1) {
+        this.privileges.splice(index, 1);
+      }
+    }
+
+
+  }
+
 
 }

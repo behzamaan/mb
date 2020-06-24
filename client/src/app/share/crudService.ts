@@ -13,13 +13,13 @@ export class CrudService<E> {
     this.api = api;
   }
 
-  findAll(): Observable<any> {
-    return this.http.get<Array<E>>(this.api + '/');
+  async findAll(): Promise<any> {
+    return await this.http.get<Array<E>>(this.api + '/').toPromise();
   }
 
-  search(p): Observable<Array<E>> {
+  async search(p): Promise<Array<E>> {
     const search = new HttpParams().set('search', p);
-    return this.http.get<Array<E>>(this.api, {params: search});
+    return await  this.http.get<Array<E>>(this.api, {params: search}).toPromise();
   }
 
   saveOrUpdate(model: E) {

@@ -27,14 +27,14 @@ export class UserSearchComponent implements OnInit {
   }
 
   findAll() {
-    this.userService.findAll().subscribe(users => this.users = users);
+    this.userService.findAll().then(users => this.users = users);
   }
 
   search() {
     const s = new SearchBuilder()
       .add('username', Search.Contains, this.user.username)
       .build();
-    this.userService.search(s).subscribe(list => this.users = list);
+    this.userService.search(s).then(list => this.users = list);
   }
 
   remove(id: Number) {

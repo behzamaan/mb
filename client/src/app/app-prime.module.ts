@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {ButtonModule, CheckboxModule, CodeHighlighterModule, InputTextModule, RadioButtonModule, TabViewModule} from 'primeng/primeng';
+import {ListboxModule} from 'primeng/listbox';
 
 
 
@@ -11,7 +12,8 @@ import {ButtonModule, CheckboxModule, CodeHighlighterModule, InputTextModule, Ra
     CheckboxModule,
     RadioButtonModule,
     TabViewModule,
-    CodeHighlighterModule
+    CodeHighlighterModule,
+    ListboxModule
   ],
   providers: [
 

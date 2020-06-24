@@ -14,6 +14,8 @@ import {UserSearchComponent} from './user/user-search/user-search.component';
 import {RoleCreateComponent} from './role/role-create/role-create.component';
 import {RoleSearchComponent} from './role/role-search/role-search.component';
 import {PrivilegeSearchComponent} from './privilege/privilege-search.component';
+import {ListboxModule} from 'primeng/listbox';
+import {AppPrimeModule} from '../app-prime.module';
 
 
 
@@ -36,6 +38,7 @@ import {PrivilegeSearchComponent} from './privilege/privilege-search.component';
     // HttpClientModule,
     AppMaterialModule,
     AuthenticationRoutingModule,
+    AppPrimeModule,
   ]
 })
 export class AuthenticationModule {}

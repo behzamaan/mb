@@ -47,9 +47,9 @@ export class RoleCreateComponent implements OnInit {
       const s = new SearchBuilder()
         .add('name', Search.Contains, this.p)
         .build();
-      this.privilegeService.search(s).subscribe(e => this.privileges = e);
+      this.privilegeService.search(s).then(e => this.privileges = e);
     } else {
-      this.privilegeService.findAll().subscribe(e => this.privileges = e);
+      this.privilegeService.findAll().then(e => this.privileges = e);
     }
   }
 

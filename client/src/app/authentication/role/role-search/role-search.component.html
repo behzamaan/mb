@@ -44,9 +44,13 @@
             </ng-container>
             <ng-container matColumnDef="privilege" >
               <th mat-header-cell *matHeaderCellDef>privilege </th>
-              <td mat-cell style="cursor: pointer" *matCellDef="let element; let i = index" (click)="openPrivilegeDialog(element.id)">
-                <mat-icon >open</mat-icon>
+              <td mat-cell style="cursor: pointer" *matCellDef="let element; let i = index" (click)="openPrivilegeDialog(element,i)">
+                <mat-icon >edit</mat-icon>
               </td>
+            </ng-container>
+            <ng-container matColumnDef="privilege-description" >
+              <th mat-header-cell *matHeaderCellDef>privilege-description </th>
+              <td mat-cell *matCellDef="let element"> {{element.privileges}} </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

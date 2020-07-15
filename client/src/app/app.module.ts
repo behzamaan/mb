@@ -6,7 +6,7 @@ import {CdkTableModule} from '@angular/cdk/table';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule, NgControl} from '@angular/forms';
 
 import {AppMaterialModule} from './app-material.module';
 
@@ -19,6 +19,8 @@ import {LoginComponent} from './authentication/login/login.component';
 import {HttpErrorInterceptor} from './http-error-interceptor';
 import {AppPrimeModule} from './app-prime.module';
 import {CookieService} from 'ngx-cookie-service';
+import { BrowserModule } from '@angular/platform-browser';
+
 
 @NgModule({
   declarations: [
@@ -26,15 +28,17 @@ import {CookieService} from 'ngx-cookie-service';
     LoginComponent,
   ],
   imports: [
-    CommonModule,
+    ReactiveFormsModule,
     FormsModule,
+    BrowserModule,
+    CommonModule,
     BrowserAnimationsModule,
     CdkTableModule,
     ScrollingModule,
     HttpClientModule,
     AppMaterialModule,
     AppRoutingModule,
-    AppPrimeModule
+    AppPrimeModule,
   ],
   providers: [CookieService,
     {

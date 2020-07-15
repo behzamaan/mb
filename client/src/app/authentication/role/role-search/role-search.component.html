@@ -38,19 +38,24 @@
             </ng-container>
             <ng-container matColumnDef="edit" >
               <th mat-header-cell *matHeaderCellDef> ویرایش </th>
-              <td mat-cell style="cursor: pointer" *matCellDef="let element; let i = index" (click)="openDialog(element.id)">
-                <mat-icon >edit</mat-icon>
+              <td mat-cell  *matCellDef="let element; let i = index" (click)="openDialog(element.id)">
+                <mat-icon style="cursor: pointer" >edit</mat-icon>
               </td>
             </ng-container>
             <ng-container matColumnDef="privilege" >
               <th mat-header-cell *matHeaderCellDef>privilege </th>
-              <td mat-cell style="cursor: pointer" *matCellDef="let element; let i = index" (click)="openPrivilegeDialog(element,i)">
-                <mat-icon >edit</mat-icon>
+              <td mat-cell  *matCellDef="let element; let i = index" (click)="openPrivilegeDialog(element,i)">
+                <mat-icon style="cursor: pointer" >edit</mat-icon>
               </td>
             </ng-container>
             <ng-container matColumnDef="privilege-description" >
               <th mat-header-cell *matHeaderCellDef>privilege-description </th>
-              <td mat-cell *matCellDef="let element"> {{element.privileges}} </td>
+              <td mat-cell *matCellDef="let element"> {{convertJsonToStrWithComma(element.privileges)}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="save" >
+              <th mat-header-cell *matHeaderCellDef>save </th>
+              <td mat-cell *matCellDef="let element">  <mat-icon style="cursor: pointer" (click)="saveOrUpdate(element)" >save</mat-icon> </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

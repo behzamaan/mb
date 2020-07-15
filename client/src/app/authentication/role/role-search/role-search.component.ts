@@ -5,10 +5,11 @@ import {Role} from '../role';
 import {RoleService} from '../role.service';
 import {PrivilegeService} from '../../privilege/privilege.service';
 import {Search} from '../../../share/search.enum';
-import {MatDialog} from '@angular/material';
+
 import {RoleCreateComponent} from '../role-create/role-create.component';
 import {Privilege} from '../../privilege/privilege';
 import {PrivilegeSearchComponent} from '../../privilege/privilege-search.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-role-search',
@@ -18,7 +19,7 @@ import {PrivilegeSearchComponent} from '../../privilege/privilege-search.compone
 export class RoleSearchComponent implements OnInit {
   role =  new Role();
  public roles: Array<Role>;
-  displayedColumns: string[] = ['name','edit','privilege','privilege-description'];
+  displayedColumns: string[] = ['name','edit','privilege','privilege-description','save'];
   list: Array<any> = [];
   privileges = new Array<Privilege>();
   p: string = null;
@@ -39,20 +40,26 @@ export class RoleSearchComponent implements OnInit {
     });
   }
 
-  openPrivilegeDialog(role : Role,index : any): void {
-    // if (id == null) {
-    //
-    // }
+  openPrivilegeDialog(role: Role, index: any): void {
     const dialogRef = this.dialog.open(PrivilegeSearchComponent, {
-      data: {idx:role.id}
+      data: {idx: role.id,privileges:role.privileges}
     });
-
     dialogRef.afterClosed().subscribe(result => {
-      console.log(JSON.stringify(result));
-      this.privileges=result;
-      // this.roles[index].privileges=result;
-      // this.ngOnInit();
+      this.privileges = result;
+      this.roles[index].privileges = this.privileges;
     });
+  }
+
+  convertJsonToStrWithComma(obj: any[]): string {
+    if (obj == null)
+      return '';
+    let res: string = '';
+    obj.forEach(e => {
+      if (res != '')
+        res += ' , ';
+      res += e.name;
+    });
+    return res;
   }
 
 
@@ -67,6 +74,16 @@ export class RoleSearchComponent implements OnInit {
     }
     this.loadPrivileges();
   }
+
+  saveOrUpdate(model: Role): Role {
+    this.roleService.saveOrUpdate(model).subscribe(
+      (data) => {
+        return data;
+      }
+    );
+    return null;
+  }
+
 
   public loadPrivileges() {
     if (this.p !== null) {

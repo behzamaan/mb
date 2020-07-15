@@ -1,14 +1,11 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 
 
-
 import {Privilege} from './privilege';
 import {PrivilegeService} from './privilege.service';
 import {SearchBuilder} from '../../share/search-builder';
 import {Search} from '../../share/search.enum';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-
-
 
 
 @Component({
@@ -23,31 +20,36 @@ export class PrivilegeSearchComponent implements OnInit,OnDestroy {
   selection=new Array<MbCheckBox>();
   p: string = null;
 
+
   constructor(private privilegeService:PrivilegeService,@Inject(MAT_DIALOG_DATA) public data: any,
   public dialogRef: MatDialogRef<PrivilegeSearchComponent>) { }
 
   ngOnInit() {
     this.loadPrivileges();
+    // this.fill(this.privileges);
   }
   public loadPrivileges() {
     const id = this.data.idx;
+    // this.privileges = this.data.privileges;
+
     console.log(id);
     if (this.p !== null) {
-      const s = new SearchBuilder()
+      this.privilegeService.search(new SearchBuilder()
         .add('name', Search.Contains, this.p)
-        .build();
-      this.privilegeService.search(s).then(e =>this.extracted(e));
+        .build()).then(e =>this.fillNull(e));
     } else {
-      this.privilegeService.findAll().then(e =>this.extracted(e));
+      this.privilegeService.findAll().then(e =>this.fillNull(e));
     }
   }
 
-  private extracted(e) {
+  private fillNull(e) {
     e.forEach(x => {
-      let checkbox: MbCheckBox = {} as MbCheckBox;
-      checkbox.isSelected = null;
+    let checkbox: MbCheckBox = {} as MbCheckBox;
+      const find = this.data.privileges.find(c => c.id === x.id);
+      checkbox.isSelected = find!=undefined;
       checkbox.value = x;
       this.selection.push(checkbox);
+      this.privileges=this.data.privileges;
     });
   }
 
@@ -68,13 +70,11 @@ export class PrivilegeSearchComponent implements OnInit,OnDestroy {
     if (box.isSelected) {
       this.privileges.push(box.value);
     } else {
-      const index: number = this.privileges.indexOf(box.value);
+      const index: number = this.privileges.findIndex(e=> e.id===box.value.id);
       if (index !== -1) {
         this.privileges.splice(index, 1);
       }
     }
-
-
   }
 
 

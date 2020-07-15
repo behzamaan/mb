@@ -9,16 +9,16 @@
         <version>2.2.2.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>ir.mb</groupId>
-    <artifactId>demo</artifactId>
+    <groupId>ir.is</groupId>
+    <artifactId>cnap</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demo</name>
+    <name>cnap</name>
     <packaging>jar</packaging>
-    <description>Demo project for Spring Boot</description>
+    <description>cnap project for Spring Boot</description>
 
     <properties>
         <java.version>1.8</java.version>
-        <client>C:/code/mb/mb/client</client>
+        <client>${basedir}/../client</client>
         <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
     </properties>
 
@@ -94,16 +94,16 @@
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-oauth2-core</artifactId>
-            <version>5.1.6.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-oauth2-client</artifactId>
-            <version>5.1.6.RELEASE</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.security</groupId>-->
+<!--            <artifactId>spring-security-oauth2-core</artifactId>-->
+<!--            <version>5.1.6.RELEASE</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.security</groupId>-->
+<!--            <artifactId>spring-security-oauth2-client</artifactId>-->
+<!--            <version>5.1.6.RELEASE</version>-->
+<!--        </dependency>-->
     </dependencies>
 
     <dependencyManagement>
@@ -203,7 +203,7 @@
                     </plugin>
                     <plugin>
                         <artifactId>maven-clean-plugin</artifactId>
-                        <version>2.6.1</version>
+                        <version>3.1.0</version>
                         <configuration>
                             <filesets>
                                 <fileset>

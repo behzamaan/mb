@@ -1,5 +1,8 @@
-<div class="card">
-  <div class="card-body">
+
+
+    <div class="card-group">
+      <div class="card">
+        <div class="card-body">
     <h5 class="card-title">کاربر</h5>
     <form #formUser="ngForm" novalidate>
       <div class="form-row">
@@ -90,14 +93,88 @@
 
         </div>
       </div>
+      <div >
+
+
+      </div>
     </form>
+        </div></div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">نقش</h5>
+<!--          <mat-form-field appearance="outline">-->
+<!--            <mat-label>Outline form field</mat-label>-->
+<!--            <input matInput placeholder="Placeholder">-->
+<!--          </mat-form-field>-->
+
+<!--          <mat-form-field appearance="outline">-->
+<!--            <mat-label>Toppings</mat-label>-->
+<!--            <mat-select [formControl]="toppings" multiple>-->
+<!--              <mat-select-trigger>-->
+<!--                {{toppings.value ? toppings.value[0].name : ''}}-->
+<!--                <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">-->
+<!--        (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})-->
+<!--      </span>-->
+<!--              </mat-select-trigger>-->
+<!--              <mat-option *ngFor="let role of roles" [value]="role">{{role.name}}</mat-option>-->
+<!--            </mat-select>-->
+<!--          </mat-form-field>-->
+
+
+<!--          <mat-form-field class="example-chip-list">-->
+<!--            <mat-chip-list #chipList aria-label="Fruit selection">-->
+<!--              <mat-chip *ngFor="let fruit of roles" [selectable]="selectable"-->
+<!--                        [removable]="removable" (removed)="remove(fruit)">-->
+<!--                {{fruit.name}}-->
+<!--                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>-->
+<!--              </mat-chip>-->
+
+<!--            </mat-chip-list>-->
+<!--          </mat-form-field>-->
+
+          <mat-form-field class="example-chip-list">
+            <mat-chip-list #chipList aria-label="Fruit selection">
+              <mat-chip
+                *ngFor="let role of user.roles"
+                [selectable]="selectable"
+                [removable]="removable"
+                (removed)="remove(role)">
+                {{role.name}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input
+                placeholder="نقش جدید ... "
+                #roleInput
+                [formControl]="roleCtrl"
+                [matAutocomplete]="auto"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                >
+            </mat-chip-list>
+
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-option *ngFor="let role of filteredRole | async" [value]="role">
+                {{role.name}}
+              </mat-option>
+            </mat-autocomplete>
+
+          </mat-form-field>
+
+        </div></div>
+    </div>
+
+
+    <div class="card">
+      <div class="card-body">
+
     <div class="bottom-form">
       <button  mat-raised-button (click)="saveOrUpdate(user)" color="primary">ذخیره
       </button>
       <button mat-raised-button (click)="back()" color="primary">بازگشت</button>
     </div>
-  </div>
-</div>
+      </div></div>
+
+
 
 <!--[disabled]="formUser.invalid"-->
 

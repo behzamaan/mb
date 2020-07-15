@@ -7,7 +7,8 @@ import {PrivilegeService} from '../../privilege/privilege.service';
 import {Privilege} from '../../privilege/privilege';
 import {SearchBuilder} from '../../../share/search-builder';
 import {Search} from '../../../share/search.enum';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-role-create',

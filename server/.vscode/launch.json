@@ -15,13 +15,13 @@
             "type": "java",
             "name": "Debug (Launch) - Current File",
             "request": "launch",
-            "mainClass": "ir.mb.demo.DemoApplication"
+            "mainClass": "ir.is.canp.ServerApplication"
         },
         {
             "type": "java",
             "name": "Debug (Launch)-DemoApplication<demo>",
             "request": "launch",
-            "mainClass": "ir.mb.demo.DemoApplication",
+            "mainClass": "ir.is.canp.ServerApplication",
             "projectName": "demo"
         }
     ]
